@@ -29,12 +29,13 @@ function love.load()
   {
     posx = screenWidth/2,
     posy = screenHeight/2,
-    radius = 10,
-    speed = 1,
+    radius = 5,
+    speed = 0.5,
     vspeed = 1
   }
    
 end
+
 
 
 function love.update(dt)
@@ -77,8 +78,14 @@ function love.update(dt)
     
     end
  
- end
+  end
+
  
+  if ball.posy + ball.radius == screenHeight or ball.posy - ball.radius == 0 then
+   
+    ball.vspeed = ball.vspeed * -1
+  
+  end
  
   ball.posx = ball.posx + 1 * ball.speed
   ball.posy = ball.posy + 1 * ball.vspeed
