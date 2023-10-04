@@ -31,11 +31,13 @@ function love.load()
     posy = screenHeight/2,
     radius = 5,
     speed = 0.5,
-    vspeed = 1
+    vspeed = -0.5
   }
    
+  p1points = 0
+  p2points = 0
+   
 end
-
 
 
 function love.update(dt)
@@ -87,9 +89,46 @@ function love.update(dt)
   
   end
  
+ if ball.posx + ball.radius >= pallet1.x or ball.posx - ball.radius <= pallet2.x + pallet2.width then
+    
+    if ball.posx + ball.radius >= pallet1.x then
+      
+      if ball.posy >= pallet1.y and ball.posy <= pallet1.y + pallet1.height then
+      
+      ball.posx = pallet1.x - ball.radius
+      
+      ball.speed = ball.speed * -1
+      
+      elseif ball.posx > screenWidth then
+      
+      ball.posx = screenWidth/2
+      ball.posy = screenHeight/2
+      p2points = p2points + 1
+      
+      end
+      
+    elseif ball.posx - ball.radius <= pallet2.x + pallet2.width then
+      
+      if ball.posy >= pallet2.y and ball.posy <= pallet2.y + pallet2.height then
+      
+      ball.posx = pallet2.x + pallet2.width + ball.radius
+      
+      ball.speed = ball.speed * -1
+      
+      elseif ball.posx < 0 then 
+      
+      ball.posx = screenWidth/2
+      ball.posy = screenHeight/2
+      p1points = p1points + 1
+      
+      end
+      
+    end
+  
+  end
+  
   ball.posx = ball.posx + 1 * ball.speed
   ball.posy = ball.posy + 1 * ball.vspeed
-
   
 end
 
