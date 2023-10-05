@@ -37,6 +37,9 @@ function love.load()
   p1points = 0
   p2points = 0
    
+  p1textpoints = string.char(p1points)
+  p2textpoints = string.char(p2points)
+  
 end
 
 
@@ -139,5 +142,9 @@ function love.draw()
   love.graphics.rectangle("line", pallet2.x, pallet2.y, pallet2.width, pallet2.height)
   
   love.graphics.circle("line", ball.posx, ball.posy, ball.radius)
+  
+  love.graphics.print("" .. p1points, 10, 10)
+  
+  love.graphics.print("" .. p1points, screenWidth-10, 10)
 
 end
